@@ -20,6 +20,25 @@ int main() {
     printf("\nHoraires de départ de Paris :\n");
     afficherHorairesDepart(liste, "Paris");
 
+    int index_trajet_rapide = trajetLePlusRapide(liste);
+    if (index_trajet_rapide != -1) {
+        printf("\nTrajet avec la vitesse moyenne la plus élevée :\n");
+        printf("Départ de %s à destination de %s à %s\n", liste->horaires[index_trajet_rapide].depart,
+               liste->horaires[index_trajet_rapide].arrivee, liste->horaires[index_trajet_rapide].heure_depart);
+    } else {
+        printf("\nAucun trajet trouvé.\n");
+    }
+
+    trierHorairesParDepart(liste);
+    printf("\nListe des horaires triée par heure de départ :\n");
+    for (int i = 0; i < liste->taille; ++i) {
+        printf("Départ de %s à destination de %s à %s\n", liste->horaires[i].depart,
+               liste->horaires[i].arrivee, liste->horaires[i].heure_depart);
+    }
+
+    printf("\nRecherche du moyen le plus rapide pour aller de Lille à Marseille :\n");
+    chercherMoyenRapide(liste, "Lille", "Marseille");
+
     detruireListeHoraires(liste);
 
     return 0;
